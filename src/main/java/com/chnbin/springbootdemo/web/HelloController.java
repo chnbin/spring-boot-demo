@@ -1,12 +1,16 @@
 package com.chnbin.springbootdemo.web;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 // import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,10 +26,28 @@ public class HelloController {
 	public String hello() {
 		return "Hello Spring Boot";
 	}
-	
+
+	// GET http://localhost:8080/api/v1/books?page=1&size=10
+	// @RequestParam(value = "size", defaultValue = "10")是要讓GET http://localhost:8080/api/v1/books?page=1，也就是沒有
+	// size時給個預設值10
 	@GetMapping("/books")
-	public String books() {
-		return "Books";
+	public Object getAllBooks(@RequestParam int page, @RequestParam(value = "size", defaultValue = "10") int size) {
+		Map<String, Object> book = new HashMap<>();
+		book.put("name", "Cujo");
+		book.put("author", "Stenphen King");
+		Map<String, Object> book2 = new HashMap<>();
+		book2.put("name", "Shiki");
+		book2.put("author", "Ono Fuyumi");
+		
+		List<Map<String, Object>> contents = new ArrayList<>();
+		contents.add(book);
+		contents.add(book2);
+		
+		Map<String, Object> pageMap = new HashMap<>();
+		pageMap.put("page", page);
+		pageMap.put("size", size);
+		pageMap.put("content", contents);
+		return pageMap;
 	}
 
 	// 接受參數，GET http://localhost:8080/api/v1/books/{id}
@@ -53,6 +75,21 @@ public class HelloController {
 		book.put("name", "Cujo");
 		book.put("author", "Stenphen King");
 		book.put("usrname", userName);
+		return book;
+	}
+	
+	// GET http://localhost:8080/api/v1/books/
+	// 目前沒有服務，使用POSMAN模擬Form input
+	@PostMapping("/books")
+	public Object post(@RequestParam String name,
+			           @RequestParam String author,
+			           @RequestParam String userName) {
+		Map<String, Object> book = new HashMap<>();
+		book.put("name", name);
+		book.put("author", author);
+		book.put("usrname", userName);
+		
+		// Write to database or something...
 		return book;
 	}
 	
