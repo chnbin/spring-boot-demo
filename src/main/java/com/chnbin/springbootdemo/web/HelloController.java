@@ -27,6 +27,7 @@ public class HelloController {
 	public String books() {
 		return "Books";
 	}
+
 	// 接受參數，GET http://localhost:8080/api/v1/books/{id}
 	// id要對應，如果不要對應的話請用以下寫法
 	// public Object getBookById(@PathVariable("id") long bookId) {
@@ -38,6 +39,20 @@ public class HelloController {
 		Map<String, Object> book = new HashMap<>();
 		book.put("name", "Cujo");
 		book.put("author", "Stenphen King");
+		return book;
+	}
+	
+	// 接受多個參數，GET http://localhost:8080/api/v1/books/{id}/{usrname}
+	// 且userName用正則表達式
+	@GetMapping("/books/{id}/{userName:[a-z_]+}")
+	public Object getBookById2(@PathVariable long id, @PathVariable String userName) {
+		
+		System.out.println("id: " + id + " userName: " + userName);
+		
+		Map<String, Object> book = new HashMap<>();
+		book.put("name", "Cujo");
+		book.put("author", "Stenphen King");
+		book.put("usrname", userName);
 		return book;
 	}
 	
