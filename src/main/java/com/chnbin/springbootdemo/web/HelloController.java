@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 // import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 // @Controller
 @RequestMapping("/api/v1")
 public class HelloController {
+	// 自定義屬性：從resources/application.yml下面讀過來的
+	@Value("${book.id}")
+	private String bookId;
+	@Value("${book.name}")
+	private String bookName;
+	@Value("${book.author}")
+	private String author;
+	@Value("${book.description}")
+	private String description;
+	
 	// 如果@RequestMapping("/say") 則支援所有請求
     // 而各種相對應的請求都有對應的annotation
 	// @PostMapping("/say")
@@ -39,9 +50,17 @@ public class HelloController {
 		book2.put("name", "Shiki");
 		book2.put("author", "Ono Fuyumi");
 		
+		// 自定義屬性
+		Map<String, Object> book3 = new HashMap<>();
+		book3.put("id", bookId);
+		book3.put("name", bookName);
+		book3.put("author", author);
+		book3.put("description", description);
+
 		List<Map<String, Object>> contents = new ArrayList<>();
 		contents.add(book);
 		contents.add(book2);
+		contents.add(book3);
 		
 		Map<String, Object> pageMap = new HashMap<>();
 		pageMap.put("page", page);

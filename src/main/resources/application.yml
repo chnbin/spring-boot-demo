@@ -1,0 +1,10 @@
+# Default config
+server:
+  port: 8080
+
+# Custom config
+book:
+  id: ${random.uuid}
+  name: Kasha
+  author: Miyabe Miyuki
+  description: ${book.name} is unputtable.
