@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 // @Controller
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v2")
 public class HelloController {
 	// 自定義屬性：從resources/application.yml下面讀過來的
 	@Value("${book.id}")
