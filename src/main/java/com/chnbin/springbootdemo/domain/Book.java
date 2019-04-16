@@ -51,4 +51,8 @@ public class Book {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
 }
