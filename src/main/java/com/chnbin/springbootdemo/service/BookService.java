@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.chnbin.springbootdemo.domain.Book;
 import com.chnbin.springbootdemo.domain.BookRepository;
@@ -51,4 +52,10 @@ public class BookService {
 	public List<Book> findByJPQL(int len) {
 		return bookRepository.findByJPQL(len);
 	}
+	
+	@Transactional // 納入交易（事務）管理
+	public int updateByJPQL(int status, long id) {
+		return bookRepository.updateByJPQL(status, id);
+	}
+	
 }

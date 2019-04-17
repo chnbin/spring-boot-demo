@@ -70,9 +70,10 @@ public class BookApp {
 	}
 	
 	@PostMapping("/books/by")
-	public List<Book> findByAuthor(@RequestParam int len) {
+	public int findByAuthor(@RequestParam int status, @RequestParam long id) {
 		// return bookService.queryBooksByAuthor(author);
 		// return bookService.queryBooksByAuthorAndStatus(author, status);
-		return bookService.findByJPQL(len);
+		// return bookService.findByJPQL(len);
+		return bookService.updateByJPQL(status, id);
 	}
 }
