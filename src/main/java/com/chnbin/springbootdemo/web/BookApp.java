@@ -29,9 +29,9 @@ public class BookApp {
 	
 	@PostMapping("/books")
 	public Book post(@RequestParam String name,
-			         @RequestParam String author,
-			         @RequestParam String description,
-			         @RequestParam int status) {
+	         @RequestParam String author,
+	         @RequestParam String description,
+	         @RequestParam int status) {
 		Book book = new Book();
 		book.setName(name);
 		book.setAuthor(author);
@@ -67,5 +67,11 @@ public class BookApp {
 	@DeleteMapping("/books/{id}")
 	public void deleteById(@PathVariable long id) {
 		bookService.deleteById(id);
+	}
+	
+	@PostMapping("/books/by")
+	public List<Book> findByAuthor(@RequestParam String author, @RequestParam int status) {
+		// return bookService.queryBooksByAuthor(author);
+		return bookService.queryBooksByAuthorAndStatus(author, status);
 	}
 }

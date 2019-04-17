@@ -37,4 +37,14 @@ public class BookService {
 	public void deleteById(long id) {
 		bookRepository.deleteById(id);
 	}
+	/*
+	 * 自定義查詢，根據作者名稱查書單列表
+	 */
+	public List<Book> queryBooksByAuthor(String author) {
+		return bookRepository.findByAuthor(author);
+	}
+	
+	public List<Book> queryBooksByAuthorAndStatus(String author, int status) {
+		return bookRepository.findByAuthorAndStatus(author, status);
+	}
 }
