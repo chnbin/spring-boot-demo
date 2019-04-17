@@ -47,4 +47,8 @@ public class BookService {
 	public List<Book> queryBooksByAuthorAndStatus(String author, int status) {
 		return bookRepository.findByAuthorAndStatus(author, status);
 	}
+	
+	public List<Book> findByJPQL(int len) {
+		return bookRepository.findByJPQL(len);
+	}
 }
