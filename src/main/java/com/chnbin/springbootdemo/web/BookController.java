@@ -31,7 +31,13 @@ public class BookController {
 		// model.addAttribute("book", book);
 		// 因為回傳是個Optional，因此不能直接放到model裡面，要使用下面的寫法
 		// https://stackoverflow.com/questions/43751128/el1008e-property-or-field-timestamp-cannot-be-found-on-object-of-type-java-u
-		bookService.findBookById(id).ifPresent(o -> model.addAttribute("book", o));
+		// 查不到id時的處置
+		Optional<Book> book = bookService.findBookById(id);
+		if (book.isPresent()) {
+			model.addAttribute("book", book.get());
+		} else {
+			model.addAttribute("book", new Book());
+		}
 		return "book";
 	}
 }
