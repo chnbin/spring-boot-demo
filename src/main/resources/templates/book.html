@@ -4,19 +4,19 @@
 <meta charset="UTF-8" />
 <title>Detail</title>
 </head>
-<body>
+<body th:object="${book}">
 	<div>
 		<p>
-			<strong>Book name: </strong><span th:text="${book.name}">Cujo</span>
+			<strong>Book name: </strong><span th:text="*{name}">Cujo</span>
 		</p>
 		<p>
-			<strong>Author: </strong><span th:text="${book.author}">Stephen King</span>
+			<strong>Author: </strong><span th:text="*{author}">Stephen King</span>
 		</p>
 		<p>
-			<strong>Description: </strong><span th:text="${book.description}">Very good</span>
+			<strong>Description: </strong><span th:text="*{description}">Very good</span>
 		</p>
 		<p>
-			<strong>Status: </strong><span th:text="${book.status}">0</span>
+			<strong>Status: </strong><span th:text="*{status}">0</span>
 		</p>
 	</div>
 </body>
