@@ -22,9 +22,18 @@
 			<p>
 				<strong>Description: </strong><span th:text="*{description}">Very good</span>
 			</p>
-			<p>
-				<strong>Status: </strong><span th:text="*{status}">0</span>
+			<p th:switch="*{status}">
+				<strong>Status: </strong>
+				<span th:case="0">Not Read</span>
+				<span th:case="1">Reading</span>
+				<span th:case="2">Finish</span>
 			</p>
+		</div>
+		<div class="alert alert-success" th:unless="*{status == 0}">
+			<strong>Good job.</strong>
+		</div>
+		<div class="alert alert-warning" th:if="*{status == 0}">
+			<strong>Delay</strong>
 		</div>
 	</div>
 
