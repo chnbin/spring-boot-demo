@@ -2,22 +2,35 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8" />
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <title>Detail</title>
 </head>
 <body th:object="${book}">
-	<div>
-		<p>
-			<strong>Book name: </strong><span th:text="*{name}">Cujo</span>
-		</p>
-		<p>
-			<strong>Author: </strong><span th:text="*{author}">Stephen King</span>
-		</p>
-		<p>
-			<strong>Description: </strong><span th:text="*{description}">Very good</span>
-		</p>
-		<p>
-			<strong>Status: </strong><span th:text="*{status}">0</span>
-		</p>
+	<div class="container"  style="max-width: 700px">
+		<div class="well">
+			<p>
+				<strong>Book name: </strong><span th:text="*{name}">Cujo</span>
+			</p>
+			<p>
+				<strong>Author: </strong><span th:text="*{author}">Stephen King</span>
+			</p>
+			<p>
+				<strong>Description: </strong><span th:text="*{description}">Very good</span>
+			</p>
+			<p>
+				<strong>Status: </strong><span th:text="*{status}">0</span>
+			</p>
+		</div>
 	</div>
-</body>
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="th:href=@{/js/bootstrap.min.js}"></script>
+ </body>
 </html>
