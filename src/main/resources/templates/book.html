@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<title>Detail</title>
+</head>
+<body>
+	<div>
+		<p>
+			<strong>Book name: </strong><span th:text="${book.name}">Cujo</span>
+		</p>
+		<p>
+			<strong>Author: </strong><span th:text="${book.author}">Stephen King</span>
+		</p>
+		<p>
+			<strong>Description: </strong><span th:text="${book.description}">Very good</span>
+		</p>
+		<p>
+			<strong>Status: </strong><span th:text="${book.status}">0</span>
+		</p>
+	</div>
+</body>
+</html>
