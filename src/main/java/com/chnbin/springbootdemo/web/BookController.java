@@ -1,5 +1,6 @@
 package com.chnbin.springbootdemo.web;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,16 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
+	/**
+	 * Get list of all books.
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/books")
-	public String list() {
+	public String list(Model model) {
+		List<Book> books = bookService.findAll();
+		model.addAttribute("books", books);
+
 		// 傳回字串books，模板名字，然後會去template下找一個叫做books的模板
 		return "books";
 	}

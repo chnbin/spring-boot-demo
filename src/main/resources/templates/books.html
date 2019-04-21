@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8" />
+
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Books</h1>
+	<div class="container">
+		<h2 class="page-header">Books</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Book name</th>
+					<th>Author</th>
+					<th>Description</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- 
+					iterStat
+						count counter from 1
+						index counter from 0
+						size  size of list
+						even/odd is even?/is odd?
+						first/last is first / last element of list
+				 -->
+				<tr th:each="book, iterStat:${books}" th:class="${iterStat.even} ? 'bg-success'">
+					<td th:text="${iterStat.count}">1</td>
+					<td th:text="${book.name}">Book</td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.description}"></td>
+					<td th:switch="${book.status}">
+						<span th:case="0">Not Read</span>
+						<span th:case="1">Reading</span>
+						<span th:case="2">Finish</span>
+						<span th:case="*">Status</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	
+	
+	
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="th:href=@{/js/bootstrap.min.js}"></script>
 </body>
 </html>
