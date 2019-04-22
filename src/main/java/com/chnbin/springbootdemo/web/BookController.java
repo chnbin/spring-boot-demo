@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.chnbin.springbootdemo.domain.Book;
 import com.chnbin.springbootdemo.service.BookService;
@@ -49,5 +50,25 @@ public class BookController {
 			model.addAttribute("book", new Book());
 		}
 		return "book";
+	}
+	/**
+	 * Jump to input page
+	 * @return
+	 */
+	@GetMapping("/books/input")
+	public String insertPage() {
+		return "input";
+	}
+	
+	/**
+	 * Submit a book
+	 * @param book
+	 * @return
+	 */
+	@PostMapping("/books")
+	public String post(Book book) {
+		bookService.save(book);
+		
+		return "redirect:/books";
 	}
 }

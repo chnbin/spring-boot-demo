@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container" style="max-width: 700px;">
+		<hr2 class="page-header">Insert new book</hr2>
+		<div class="well">
+			<form action="#" th:action="@{/books}" method="post">
+				<div class="form-group">
+					<label for="nameId">Book Name</label>
+					<Input type="text" name="name" id="nameId" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="authorId">Author</label>
+					<Input type="text" name="author" id="authorId" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="descriptionId">Description</label>
+					<Input type="text" name="description" id="descriptionId" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="statusId">Status</label>
+					<Select name="status" id="nameId" class="form-control">
+						<option value="0">Not read</option>
+						<option value="1">Reading</option>
+						<option value="2">Finish</option>
+					</Select>
+				</div>
+				<p class="text-center">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</p>
+			</form>
+		</div>
+	</div>
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="th:href=@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
