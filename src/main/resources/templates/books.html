@@ -10,6 +10,11 @@
 <body>
 	<div class="container">
 		<h2 class="page-header">Books</h2>
+		<div class="alert alert-success alert-dismissable" th:unless="${#strings.isEmpty(message)}">
+			<a href="#" class="close" data-dismiss="alert">&times;</a>
+			<strong>Done</strong>
+			<span th:text="${message}">Submit success</span>
+		</div>
 		<p><a href="#" th:href="@{/books/input}" class="btn btn-primary">Insert</a></p>
 		<table class="table table-bordered">
 			<thead>

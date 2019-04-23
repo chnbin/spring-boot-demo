@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chnbin.springbootdemo.domain.Book;
 import com.chnbin.springbootdemo.service.BookService;
@@ -65,13 +66,19 @@ public class BookController {
 	 * Submit a book
 	 * @param book
 	 * @return
+	 * 
+	 * POST ---> Redirect ---> GET /books
+	 * Two responses.
+	 * Model can exist within one response.
+	 * So we use RedirectAttributes.
 	 */
 	@PostMapping("/books")
-	public String post(Book book) {
-		bookService.save(book);
-		
+	public String post(Book book, final RedirectAttributes attr) {
+		Book bookReturn = bookService.save(book);
+		if (bookReturn != null) { attr.addAttribute("message", bookReturn.getName() + " inserted.");}
 		return "redirect:/books";
 	}
+
 	/**
 	 * Redirect to update page
 	 * @param id
