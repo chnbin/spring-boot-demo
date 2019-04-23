@@ -9,27 +9,28 @@
 </head>
 <body>
 	<div class="container" style="max-width: 700px;">
-		<hr2 class="page-header">Insert new book</hr2>
+		<h2 class="page-header">Insert new book</h2>
 		<div class="well">
-			<form action="#" th:action="@{/books}" method="post">
+			<form action="#" th:action="@{/books}" th:object="${book}" method="post">
+				<input type="hidden" th:value="*{id}" name="id">
 				<div class="form-group">
 					<label for="nameId">Book Name</label>
-					<Input type="text" name="name" id="nameId" class="form-control">
+					<Input type="text" name="name" id="nameId" class="form-control" th:field="*{name}">
 				</div>
 				<div class="form-group">
 					<label for="authorId">Author</label>
-					<Input type="text" name="author" id="authorId" class="form-control">
+					<Input type="text" name="author" id="authorId" class="form-control" th:field="*{author}">
 				</div>
 				<div class="form-group">
 					<label for="descriptionId">Description</label>
-					<Input type="text" name="description" id="descriptionId" class="form-control">
+					<Input type="text" name="description" id="descriptionId" class="form-control" th:field="*{description}">
 				</div>
 				<div class="form-group">
 					<label for="statusId">Status</label>
 					<Select name="status" id="nameId" class="form-control">
-						<option value="0">Not read</option>
-						<option value="1">Reading</option>
-						<option value="2">Finish</option>
+						<option value="0" th:selected="(*{status} == '0')">Not read</option>
+						<option value="1" th:selected="(*{status} == '1')">Reading</option>
+						<option value="2" th:selected="(*{status} == '2')">Finish</option>
 					</Select>
 				</div>
 				<p class="text-center">

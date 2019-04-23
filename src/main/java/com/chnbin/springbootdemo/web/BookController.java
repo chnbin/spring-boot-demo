@@ -56,7 +56,8 @@ public class BookController {
 	 * @return
 	 */
 	@GetMapping("/books/input")
-	public String insertPage() {
+	public String insertPage(Model model) {
+		model.addAttribute("book", new Book());
 		return "input";
 	}
 	
@@ -70,5 +71,21 @@ public class BookController {
 		bookService.save(book);
 		
 		return "redirect:/books";
+	}
+	/**
+	 * Redirect to update page
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/books/input/{id}")
+	public String updatePage(@PathVariable long id, Model model) {
+		Optional<Book> book = bookService.findBookById(id);
+		if (book.isPresent()) {
+			model.addAttribute("book", book.get());
+		} else {
+			model.addAttribute("book", new Book());
+		}
+		return "input";
 	}
 }

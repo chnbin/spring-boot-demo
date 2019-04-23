@@ -19,6 +19,7 @@
 					<th>Author</th>
 					<th>Description</th>
 					<th>Status</th>
+					<th>Operate</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,6 +43,9 @@
 						<span th:case="1">Reading</span>
 						<span th:case="2">Finish</span>
 						<span th:case="*">Status</span>
+					</td>
+					<td>
+						<a href="#" th:href="@{/books/input/{id}(id=${book.id})}">Update</a>
 					</td>
 				</tr>
 			</tbody>
