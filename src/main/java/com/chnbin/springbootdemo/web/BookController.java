@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,11 +35,9 @@ public class BookController {
 	 */
 	@GetMapping("/books")
 	public String list(Model model,
-			           @RequestParam(defaultValue = "0") int page,
-			           @RequestParam(defaultValue = "5") int size) {
-		// List<Book> books = bookService.findAll();
-		Sort sort = new Sort(Direction.DESC, "id");
-		Page<Book> pages = bookService.findAllByPage(PageRequest.of(page, size, sort));
+			           @PageableDefault(size=5, sort ={"id"}, direction = Direction.DESC) Pageable pageable) {
+		// 利用@PageableDefault來定義一些參數，這可以防止直接在網頁?page=-1這種狀況
+		Page<Book> pages = bookService.findAllByPage(pageable);
 		model.addAttribute("pages", pages);
 		// 傳回字串books，模板名字，然後會去template下找一個叫做books的模板
 		return "books";

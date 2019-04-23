@@ -57,8 +57,8 @@
 		</table>
 		<nav>
 			<ul class="pager">
-				<li class="previous"><a href="#" th:href="@{'/books/?page=' + ${pages.number-1}}">Prev</a></li>
-				<li class="next"><a href="#" th:href="@{'/books/?page=' + ${pages.number+1}}">Next</a></li>
+				<li class="previous"><a href="#" th:href="@{'/books/?page=' + ${pages.number-1}}" th:unless="${pages.first}">Prev</a></li>
+				<li class="next"><a href="#" th:href="@{'/books/?page=' + ${pages.number+1}}" th:unless="${pages.last}">Next</a></li>
 			</ul>
 		</nav>
 	</div>
