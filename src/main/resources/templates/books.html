@@ -36,7 +36,7 @@
 						even/odd is even?/is odd?
 						first/last is first / last element of list
 				 -->
-				<tr th:each="book, iterStat:${books}" th:class="${iterStat.even} ? 'bg-success'">
+				<tr th:each="book, iterStat:${pages.content}" th:class="${iterStat.even} ? 'bg-success'">
 					<td th:text="${iterStat.count}">1</td>
 					<!-- Two methods -->
 					<!-- <td ><a href="#" th:text="${book.name}" th:href="@{/books/{id}(id=${book.id})}">Book</a></td> -->
@@ -55,6 +55,12 @@
 				</tr>
 			</tbody>
 		</table>
+		<nav>
+			<ul class="pager">
+				<li class="previous"><a href="#" th:href="@{'/books/?page=' + ${pages.number-1}}">Prev</a></li>
+				<li class="next"><a href="#" th:href="@{'/books/?page=' + ${pages.number+1}}">Next</a></li>
+			</ul>
+		</nav>
 	</div>
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

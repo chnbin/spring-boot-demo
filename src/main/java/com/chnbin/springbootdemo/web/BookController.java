@@ -4,11 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chnbin.springbootdemo.domain.Book;
@@ -27,10 +32,13 @@ public class BookController {
 	 * @return
 	 */
 	@GetMapping("/books")
-	public String list(Model model) {
-		List<Book> books = bookService.findAll();
-		model.addAttribute("books", books);
-
+	public String list(Model model,
+			           @RequestParam(defaultValue = "0") int page,
+			           @RequestParam(defaultValue = "5") int size) {
+		// List<Book> books = bookService.findAll();
+		Sort sort = new Sort(Direction.DESC, "id");
+		Page<Book> pages = bookService.findAllByPage(PageRequest.of(page, size, sort));
+		model.addAttribute("pages", pages);
 		// 傳回字串books，模板名字，然後會去template下找一個叫做books的模板
 		return "books";
 	}
